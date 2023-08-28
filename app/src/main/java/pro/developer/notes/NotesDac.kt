@@ -3,7 +3,6 @@ package pro.developer.notes
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
-
 @Dao
 interface NotesDac {
 
@@ -17,6 +16,7 @@ interface NotesDac {
     suspend fun delete(note: Note)
 
     @Query("Select * from notesTable order by id ASC")
-
     fun getAllNotes():LiveData<List<Note>>
+
+
 }

@@ -3,9 +3,11 @@ package pro.developer.notes
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -29,8 +31,8 @@ class MainActivity : AppCompatActivity(), NoteClickDeleteInterface, NoteClickInt
 
 
         val  noteRvAdapter = NoteRvAdapter(this,this,this)
-//        notesRv.layoutManager= LinearLayout(this)
         notesRv.setAdapter(noteRvAdapter)
+        notesRv.layoutManager=LinearLayoutManager(this)
 
 
 
