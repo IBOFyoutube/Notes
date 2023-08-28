@@ -3,6 +3,7 @@ package pro.developer.notes
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity(), NoteClickDeleteInterface, NoteClickInterface {
+
 
     lateinit var notesRv:RecyclerView
     lateinit var addFab:FloatingActionButton
@@ -34,6 +36,8 @@ class MainActivity : AppCompatActivity(), NoteClickDeleteInterface, NoteClickInt
         notesRv.setAdapter(noteRvAdapter)
         notesRv.layoutManager=LinearLayoutManager(this)
 
+        // window.decorView.systemUiVisibility=View.SYSTEM_UI_FLAG_FULLSCREEN
+        supportActionBar?.hide()
 
 
 
@@ -70,5 +74,4 @@ class MainActivity : AppCompatActivity(), NoteClickDeleteInterface, NoteClickInt
         startActivity(intent)
         this.finish()
 
-    }
-}
+    }}

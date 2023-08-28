@@ -1,5 +1,6 @@
 package pro.developer.notes
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,7 +8,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -17,10 +17,10 @@ class AddEditNoteActivity : AppCompatActivity() {
     lateinit var noteDescriptionEdit: EditText
     lateinit var addUpdateBtn: Button
     lateinit var viewModel: NoteViewModel
-    lateinit var notesRv: RecyclerView
     var noteID = -1
 
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_edit_note)
@@ -28,6 +28,10 @@ class AddEditNoteActivity : AppCompatActivity() {
         noteTitleEdit = findViewById(R.id.idEditNoteTitle)
         noteDescriptionEdit = findViewById(R.id.editNoteDescription)
         addUpdateBtn = findViewById(R.id.idBtnAddUpdate)
+
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.title="Notes"
 
         viewModel= ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         ).get(NoteViewModel::class.java)
@@ -37,7 +41,7 @@ class AddEditNoteActivity : AppCompatActivity() {
             val noteTitle = intent.getStringExtra("noteTitle")
             val noteDesc = intent.getStringExtra("noteDescription")
             noteID = intent.getIntExtra("noteID",-1)
-            addUpdateBtn.setText("Note Updated..")
+            addUpdateBtn.setText("Note Update")
 
             noteTitleEdit.setText(noteTitle)
             noteDescriptionEdit.setText(noteDesc)
@@ -75,12 +79,21 @@ class AddEditNoteActivity : AppCompatActivity() {
 
                 }
 
-        }
+            }
             startActivity(Intent(applicationContext,MainActivity::class.java))
             this.finish()
 
+        }
     }
-}
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        val intent=Intent(this,MainActivity::class.java)
+        startActivity(intent)
+        return super.onSupportNavigateUp()
+    }
+
+
+
 
 }
-
