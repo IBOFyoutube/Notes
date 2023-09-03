@@ -1,10 +1,16 @@
 package pro.developer.notes
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.Window
+import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -57,8 +63,35 @@ class MainActivity : AppCompatActivity(), NoteClickDeleteInterface, NoteClickInt
 
     override fun onDeleteIconClick(note: Note) {
 
-        viewModal.deleteNote(note)
-        Toast.makeText(this, "${note.noteTitle} Deleted", Toast.LENGTH_SHORT).show()
+        val message:String?="${note.noteTitle}"
+        showCustomDialog(message)
+
+
+    }
+
+    private fun showCustomDialog(message: String?) {
+
+        val dialog=Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.dialog_delete)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val tvMassage:TextView=dialog.findViewById(R.id.tv_message_delete)
+        val btnYes: Button =dialog.findViewById(R.id.btn_yes_answer)
+        val btnNo:Button=dialog.findViewById(R.id.btn_no_answer)
+
+        tvMassage.setText("$message")
+
+        btnYes.setOnClickListener {
+            viewModal.deleteNote(note)
+            Toast.makeText(this, "${note.noteTitle} Deleted", Toast.LENGTH_SHORT).show()
+
+        }
+        btnNo.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
 
     }
 
