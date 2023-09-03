@@ -19,6 +19,7 @@ class NoteRvAdapter(
         val noteTv = itemView.findViewById<TextView>(R.id.idTvNoteTitle)
         val timeTv = itemView.findViewById<TextView>(R.id.idTvTimeStamp)
         val deleteTv = itemView.findViewById<ImageView>(R.id.idTvDelete)
+        val editTv = itemView.findViewById<ImageView>(R.id.idTvEdit)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -41,6 +42,10 @@ class NoteRvAdapter(
         holder.itemView.setOnClickListener {
             noteClickInterface.onNoteClick(allNotes.get(position))
         }
+        holder.editTv.setOnClickListener {
+            noteClickInterface.onEditC(allNotes.get(position))
+        }
+
 
     }
 
@@ -55,6 +60,7 @@ class NoteRvAdapter(
 
 interface NoteClickDeleteInterface {
     fun onDeleteIconClick(note: Note)
+    fun onEditC(note: Note)
 }
 
 interface NoteClickInterface {

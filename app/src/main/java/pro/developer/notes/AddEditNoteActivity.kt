@@ -33,6 +33,7 @@ class AddEditNoteActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title="Notes"
 
+
         viewModel= ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         ).get(NoteViewModel::class.java)
 

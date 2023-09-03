@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="5dp"
+    app:cardCornerRadius="6dp"
     android:layout_margin="5dp"
     app:cardBackgroundColor="@color/black_shade_2"
     app:cardElevation="4dp">
@@ -23,7 +23,7 @@
             android:padding="4dp"
             android:text="No Title"
             android:textColor="@color/white"
-            android:layout_toLeftOf="@+id/idTvDelete"
+            android:layout_toLeftOf="@+id/lytbir"
             android:textSize="18dp"
 
             />
@@ -35,28 +35,38 @@
             android:layout_margin="4dp"
             android:padding="4dp"
             android:text="TimeStamp"
-            android:layout_toLeftOf="@+id/idTvDelete"
+            android:layout_toLeftOf="@+id/lytbir"
             android:layout_below="@+id/idTvNoteTitle"
             android:textColor="@color/white"
 
             />
 
-        <ImageView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/idTvDelete"
-            android:src="@drawable/ic_delete"
-            android:layout_centerVertical="true"
-            android:layout_margin="5dp"
-            android:padding="4dp"
+            android:id="@+id/lytbir"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            />
+            android:layout_alignParentTop="true"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/idTvEdit"
+                android:src="@drawable/ic_edit"
+                android:layout_margin="5dp"
+                android:padding="4dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/idTvDelete"
+                android:src="@drawable/ic_delete"
+                android:layout_margin="5dp"
+                android:padding="4dp"
+                />
 
-
-
-
-
+        </LinearLayout>
 
     </RelativeLayout>
 

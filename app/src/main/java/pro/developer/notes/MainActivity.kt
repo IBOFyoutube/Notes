@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity(), NoteClickDeleteInterface, NoteClickInt
     lateinit var note:Note
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -66,12 +64,31 @@ class MainActivity : AppCompatActivity(), NoteClickDeleteInterface, NoteClickInt
 
     override fun onNoteClick(note: Note) {
 
+        val intent=Intent(this,About_it::class.java)
+        intent.putExtra("noteType","Edit")
+        intent.putExtra("noteTitle",note.noteTitle)
+        intent.putExtra("noteDescription",note.noteDescription)
+        intent.putExtra("noteID",note.id)
+        startActivity(intent)
+
+
+    }
+
+    override fun onEditC(note: Note){
+
         val intent=Intent(this,AddEditNoteActivity::class.java)
         intent.putExtra("noteType","Edit")
         intent.putExtra("noteTitle",note.noteTitle)
         intent.putExtra("noteDescription",note.noteDescription)
         intent.putExtra("noteID",note.id)
         startActivity(intent)
-        this.finish()
+        //this.finish()
 
-    }}
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+        this.finish()
+    }
+
+}

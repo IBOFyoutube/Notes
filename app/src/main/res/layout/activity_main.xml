@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/idRVNotes"
+        android:padding="5dp"
         tools:listitem="@layout/note_rv_item"
 
         />
