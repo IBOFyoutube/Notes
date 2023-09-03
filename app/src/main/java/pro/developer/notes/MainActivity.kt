@@ -1,5 +1,6 @@
 package pro.developer.notes
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
@@ -60,11 +61,26 @@ class MainActivity : AppCompatActivity(), NoteClickDeleteInterface, NoteClickInt
     }
 
 
-
     override fun onDeleteIconClick(note: Note) {
 
-        val message:String?="${note.noteTitle}"
-        showCustomDialog(message)
+        //val message:String?="${note.noteTitle}"
+       // showCustomDialog(message)
+
+       var builder=AlertDialog.Builder(this)
+        builder.setTitle(" Delete ")
+            .setMessage("Are you sure delete ${note.noteTitle} ?")
+
+            .setCancelable(true)
+            .setPositiveButton("Yes"){dialogInterface,it->
+
+                viewModal.deleteNote(note)
+                Toast.makeText(this, "${note.noteTitle} deleted", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("No"){dialogInterface,it->
+                dialogInterface.cancel()
+            }
+            .show()
+
 
 
     }
@@ -84,8 +100,9 @@ class MainActivity : AppCompatActivity(), NoteClickDeleteInterface, NoteClickInt
         tvMassage.setText("$message")
 
         btnYes.setOnClickListener {
-            viewModal.deleteNote(note)
-            Toast.makeText(this, "${note.noteTitle} Deleted", Toast.LENGTH_SHORT).show()
+
+                viewModal.deleteNote(note)
+
 
         }
         btnNo.setOnClickListener {
