@@ -26,6 +26,10 @@ class MainActivity : AppCompatActivity(), NoteClickDeleteInterface, NoteClickInt
     lateinit var addFab:FloatingActionButton
     lateinit var viewModal:NoteViewModel
     lateinit var note:Note
+    lateinit var adapter: NoteRvAdapter
+    companion object{
+        private val allNotes=ArrayList<String>()
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,8 +48,6 @@ class MainActivity : AppCompatActivity(), NoteClickDeleteInterface, NoteClickInt
         // window.decorView.systemUiVisibility=View.SYSTEM_UI_FLAG_FULLSCREEN
         supportActionBar?.hide()
 
-
-
         viewModal=ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(NoteViewModel::class.java)
         viewModal.allNotes.observe(this, Observer { list->
             list?.let {
@@ -58,7 +60,10 @@ class MainActivity : AppCompatActivity(), NoteClickDeleteInterface, NoteClickInt
             startActivity(intent)
             this.finish()
         }
+
     }
+
+
 
 
     override fun onDeleteIconClick(note: Note) {

@@ -1,10 +1,14 @@
 package pro.developer.notes
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ScrollView
 import android.widget.TextView
+import android.widget.Toast
 
 class About_it : AppCompatActivity() {
 
@@ -38,11 +42,16 @@ class About_it : AppCompatActivity() {
 
         }else{
 
-
-
         }
 
 
+        txt_desc.setOnClickListener{
+            val clipboard = applicationContext.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("label", txt_desc.text.toString())
+            clipboard.setPrimaryClip(clip)
+            Toast.makeText(applicationContext, "copied ", Toast.LENGTH_SHORT).show()
+
+        }
 
 
     }
